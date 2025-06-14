@@ -15,9 +15,9 @@
   "dependencies": {
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-opener": "^2",
-    "@waku/sdk": "0.0.32-4997440.0",
-    "@waku/message-encryption": "0.0.34-4997440.0",
-    "@waku/utils": "0.0.24-4997440.0",
+    "@waku/sdk": "0.0.32-01af155.0",
+    "@waku/message-encryption": "0.0.34-01af155.0",
+    "@waku/utils": "0.0.24-01af155.0",
     "protobufjs": "^7.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
@@ -27,7 +27,7 @@
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
-    "@waku/interfaces": "0.0.31-4997440.0",
+    "@waku/interfaces": "0.0.31-01af155.0",
     "typescript": "~5.6.2",
     "vite": "^6.0.3"
   }
