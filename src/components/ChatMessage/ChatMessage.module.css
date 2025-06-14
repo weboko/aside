@@ -20,13 +20,6 @@
   word-break: break-word;
 }
 
-/* If peer message, override bubble style */
-.peer .bubble {
-  background-color: var(--color-surface);
-  color: var(--color-on-surface);
-  border: 1px solid var(--color-gray-dust);
-}
-
 /* Message text */
 .text {
   font-size: var(--font-size-body-md);
@@ -47,5 +40,22 @@
 
 .statusText {
   font-size: var(--font-size-tag-md);
+}
+
+.statusLine .statusText {
   color: var(--color-gray-dust);
+}
+
+.statusSent .statusText {
+  color: var(--color-white-pure);
+}
+.statusSent path {
+  margin-right: 2px;
+}
+
+.statusDelivered .statusText {
+  color: var(--color-primary);
+}
+.statusDelivered path {
+  margin-right: 2px;
 }

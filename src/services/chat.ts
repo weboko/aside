@@ -15,6 +15,7 @@ export const ACK_EVENT = "ack";
 export const SENT_EVENT = "sent";
 export const ERROR_EVENT = "error";
 export const ONLINE_EVENT = "online";
+export const EXIT_EVENT = "exit";
 
 export class Chat implements IChat {
   private compromised = false;
@@ -47,6 +48,13 @@ export class Chat implements IChat {
     }
 
     this.setupMessageSending();
+  }
+
+  public exit(): void {
+    this.messageQueue.push({
+      type: "exit"
+    });
+    this.sendScheduled();
   }
 
   public dispose(): void {
@@ -89,6 +97,11 @@ export class Chat implements IChat {
   private async onMessage(m: IEncryptedMessage): Promise<void> {
     if (this.compromised) {
       console.warn("onMessage: ignoring all messages, the key was compromised");
+      return;
+    }
+
+    if (!m) {
+      console.warn("onMessage: cannot read message");
       return;
     }
 
@@ -142,6 +155,12 @@ export class Chat implements IChat {
     if (message.type === "ack") {
       this.events.dispatchEvent(
         new CustomEvent(ACK_EVENT, { detail: message.messageId })
+      );
+    }
+
+    if (message.type === "exit") {
+      this.events.dispatchEvent(
+        new CustomEvent(EXIT_EVENT, { detail: true })
       );
     }
   }

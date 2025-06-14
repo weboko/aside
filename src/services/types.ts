@@ -14,4 +14,8 @@ type IAckMessage = {
   messageId: string,
 };
 
-export type IAsideMessage = IPubkeyMessage | IChatMessage | IAckMessage;
+type IExitMessage = {
+  type: "exit",
+};
+
+export type IAsideMessage = IPubkeyMessage | IChatMessage | IAckMessage | IExitMessage;

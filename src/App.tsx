@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { bytesToHex, hexToBytes } from "@waku/utils/bytes";
 
 import { Header } from "./components/Header";
-import { Chat, ONLINE_EVENT, ERROR_EVENT } from "./services/chat";
+import { Chat, ONLINE_EVENT, ERROR_EVENT, EXIT_EVENT } from "./services/chat";
 import { useWaku } from "./components/WakuProvider";
 import { StepAsideScreen } from "./components/StepAsideScreen";
 import { ChatScreen} from "./components/ChatScreen";
@@ -15,7 +15,7 @@ function App() {
   const { stage, node } = useWaku();
   const [chatStage, setChatStage] = useState("offline");
   const [chat, setChat] = useState<Chat>();
-  const { messages, sendMessage } = useMessages(chat);
+  const { messages, sendMessage, reset } = useMessages(chat);
 
   const onCreate = async () => {
     if (!node) {
@@ -45,14 +45,18 @@ function App() {
       
       const chat = new Chat(node, publicKey);
       setChat(chat);
+      setChatStage("online");
     } catch (_) {
       console.error("Failed to read from buffer.");
     }
   };
 
   const onExit = () => {
+    chat?.exit();
     chat?.dispose();
     setChat(undefined);
+    setChatStage("offline");
+    reset();
   };
 
   useEffect(() => {
@@ -68,16 +72,25 @@ function App() {
       setChatStage("offline");
     };
 
+    const onExitEvent = () => {
+      chat?.dispose();
+      setChat(undefined);
+      setChatStage("offline");
+      reset();
+    };
+
     chat.events.addEventListener(ONLINE_EVENT, onOnlineEvent);
     chat.events.addEventListener(ERROR_EVENT, onErrorEvent);
+    chat.events.addEventListener(EXIT_EVENT, onExitEvent);
 
     return () => {
       if (!chat) return;
 
       chat.events.removeEventListener(ONLINE_EVENT, onOnlineEvent);
-      chat.events.addEventListener(ONLINE_EVENT, onErrorEvent);
+      chat.events.removeEventListener(ERROR_EVENT, onErrorEvent);
+      chat.events.removeEventListener(EXIT_EVENT, onExitEvent);
     }
-  }, [chat]);
+  }, [chat, setChat, setChatStage]);
 
   return (
     <div className={styles.container}>

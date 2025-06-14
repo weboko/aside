@@ -6,11 +6,16 @@ import { Chat, MESSAGE_EVENT, SENT_EVENT, ACK_EVENT } from "./chat";
 
 type UseMessagesReturn = {
   messages: Message[];
+  reset: () => void;
   sendMessage: (text: string) => void;
 };
 
 export const useMessages = (chat?: Chat): UseMessagesReturn => {
   const [messages, setMessages] = useState<Message[]>([]);
+
+  const reset = () => {
+    setMessages([]);
+  };
 
   const sendMessage = (text: string): void => {
     if (!chat) {
@@ -98,6 +103,7 @@ export const useMessages = (chat?: Chat): UseMessagesReturn => {
 
   return {
     messages,
-    sendMessage
+    sendMessage,
+    reset,
   }
 };
