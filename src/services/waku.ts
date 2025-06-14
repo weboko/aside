@@ -28,7 +28,7 @@ export class Waku implements IWaku {
           discovery: {
             dns: false,
             peerExchange: true,
-            localPeerCache: false,
+            localPeerCache: true,
           },
         });
 
