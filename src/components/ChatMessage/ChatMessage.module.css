@@ -1,0 +1,51 @@
+.messageWrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 8px 16px;
+}
+
+.own {
+  align-items: flex-end;
+}
+
+.peer {
+  align-items: flex-start;
+}
+
+.bubble {
+  max-width: 75%;
+  padding: 8px 12px;
+  border-radius: 16px;
+  color: var(--color-on-primary);
+  word-break: break-word;
+}
+
+/* If peer message, override bubble style */
+.peer .bubble {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  border: 1px solid var(--color-gray-dust);
+}
+
+/* Message text */
+.text {
+  font-size: var(--font-size-body-md);
+  line-height: var(--line-height-msg);
+}
+
+/* Status line under the bubble, only for own messages in queued state */
+.statusLine {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.icon {
+  margin-right: 4px;
+  fill: var(--color-gray-dust);
+}
+
+.statusText {
+  font-size: var(--font-size-tag-md);
+  color: var(--color-gray-dust);
+}

@@ -75,7 +75,7 @@ a {
 a:hover,
 a:focus {
   /* Slightly darker/lighter shade could be computed, but here we darken by 10% via opacity overlay */
-  color: var(--color-primary);
+  color: var(--color-white-pure);
   opacity: 0.85;
 }
 
@@ -169,14 +169,14 @@ button:hover,
 input:hover,
 select:hover,
 textarea:hover {
-  border-color: var(--color-primary);
+  /* border-color: var(--color-white-pure); */
 }
 
 button:active,
 input:active,
 select:active,
 textarea:active {
-  border-color: var(--color-primary);
+  /* border-color: var(--color-white-pure); */
   /* Slightly darker background when active: using RGBA overlay */
   background-color: rgba(0,0,0,0.1);
 }

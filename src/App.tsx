@@ -5,6 +5,7 @@ import { Header } from "./components/Header";
 import { Chat, ONLINE_EVENT, ERROR_EVENT } from "./services/chat";
 import { useWaku } from "./components/WakuProvider";
 import { StepAsideScreen } from "./components/StepAsideScreen";
+import { ChatScreen } from "./components/ChatScreen";
 
 import "./App.css";
 import styles from "./App.module.css";
@@ -80,10 +81,16 @@ function App() {
     <div className={styles.container}>
       {chat && <Header stage={stage} chatStage={chatStage} onExit={onExit} />}
 
-      <StepAsideScreen
-        onPaste={onPaste}
-        onCreate={onCreate}
-      />
+      {!chat && (
+        <StepAsideScreen
+          onPaste={onPaste}
+          onCreate={onCreate}
+        />
+      )}
+
+      {chat && (
+        <ChatScreen peerOnline={chatStage === "online"} />
+      )}
     </div>
   );
 }
