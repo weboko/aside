@@ -1,5 +1,6 @@
 // import { useState, useEffect } from "react";
 import { useWaku } from "./components/WakuProvider";
+import { StepAsideScreen } from "./components/StepAsideScreen";
 import "./App.css";
 
 function App() {
@@ -7,27 +8,24 @@ function App() {
 
   console.log(stage, node);
 
-  return (
-    <main className="container">
-      <h1>Welcome to Tauri + React</h1>
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
+  const handleBack = () => {
+    console.log('handleBack');
+  };
+  const handlePaste = () => {
+    // your paste logic
+    console.log('Paste pressed');
+  };
+  const handleCreate = () => {
+    // your create logic
+    console.log('Create pressed');
+  };
 
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault();
-          // greet();~
-        }}
-      >
-        <input
-          id="greet-input"
-          // onChange={(e) /=> setName(e.currentTarget.value)}
-          placeholder="Enter a name..."
-        />
-        <button type="submit">Greet</button>
-      </form>
-      {/* <p>{greetMsg}</p> */}
-    </main>
+  return (
+    <StepAsideScreen
+      onBack={handleBack}
+      onPaste={handlePaste}
+      onCreate={handleCreate}
+    />
   );
 }
 

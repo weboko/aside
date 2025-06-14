@@ -1,0 +1,30 @@
+.header {
+  /* Make header height consistent. */
+  display: flex;
+  align-items: center;
+  height: 56px; /* adjust as needed */
+  padding-left: 16px;
+  /* background-color: transparent; assume the screen's background shows through */
+  /* If you want a background, set here. */
+}
+
+.backButton {
+  background: none;
+  border: none;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF; /* arrow color */
+  cursor: pointer;
+}
+
+.backButton:active {
+  opacity: 0.6;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  /* color is inherited from currentColor */
+}

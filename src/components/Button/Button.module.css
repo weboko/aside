@@ -1,0 +1,35 @@
+.button {
+  /* Box sizing and reset */
+  box-sizing: border-box;
+  border: none;
+  border-radius: 8px; /* adjust as desired */
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 16px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+}
+
+/* Primary variant: e.g. for “Paste” */
+.primary {
+  background-color: #FFFFFF; /* white background */
+  color: #000000; /* black text */
+}
+
+/* Secondary variant: e.g. for “+ Create” */
+.secondary {
+  background-color: rgba(255, 255, 255, 0.1); /* translucent white */
+  color: #FFFFFF;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Disabled state */
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

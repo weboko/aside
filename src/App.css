@@ -1,28 +1,189 @@
-.logo.vite:hover {
-  filter: drop-shadow(0 0 2em #747bff);
-}
+/* Import Roboto like in Android (adjust if you host fonts differently) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafb);
-}
+/*──────────────────────────────────────────────────────────────────────────
+  Color & theme variables
+──────────────────────────────────────────────────────────────────────────*/
+
+/* Light theme (default) */
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+  /* Color scheme (adapted from Android darkColorScheme, but here for light mode) */
+  --color-background: #FFFFFF;      /* background */
+  --color-surface: #FFFFFF;         /* surface */
+  --color-primary: #A532FF;         /* PurplePrivate */
+  --color-on-primary: #FFFFFF;      /* text/icon on primary */
+  --color-secondary: #FFCC00;       /* YellowCone */
+  --color-on-secondary: #000000;    /* text/icon on secondary */
+  --color-tertiary: #D43437;        /* RedAlarm */
+  --color-on-tertiary: #FFFFFF;     /* text/icon on tertiary */
+  --color-on-background: #000000;   /* default text on background */
+  --color-on-surface: #000000;      /* default text on surface */
 
-  color: #0f0f0f;
-  background-color: #f6f6f6;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  /* Additional semantic or grayscale colors if needed */
+  --color-black-hole: #000000;
+  --color-gray-graphene: #1B1B1B;
+  --color-gray-shadow: #424242;
+  --color-gray-dust: #666666;
+  --color-white-pure: #FFFFFF;
+  --color-mustard-pulse: #836000;
+  --color-red-alarm: #D43437;
 }
 
-.container {
+/* Dark theme override */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Android darkColorScheme values */
+    --color-background: #000000;      /* BlackHole */
+    --color-surface: #1B1B1B;         /* GrayGraphene */
+    --color-primary: #A532FF;         /* PurplePrivate */
+    --color-on-primary: #FFFFFF;      /* WhitePure */
+    --color-secondary: #FFCC00;       /* YellowCone */
+    --color-on-secondary: #000000;    /* BlackHole */
+    --color-tertiary: #D43437;        /* RedAlarm */
+    --color-on-tertiary: #FFFFFF;     /* WhitePure */
+    --color-on-background: #FFFFFF;   /* WhitePure on black bg */
+    --color-on-surface: #FFFFFF;      /* WhitePure on dark surface */
+
+    /* You may override grayscale if needed in dark: */
+    --color-black-hole: #000000;
+    --color-gray-graphene: #1B1B1B;
+    --color-gray-shadow: #424242;
+    --color-gray-dust: #666666;
+    --color-white-pure: #FFFFFF;
+    --color-mustard-pulse: #836000;
+    --color-red-alarm: #D43437;
+  }
+}
+
+/* Apply background & text color globally */
+body {
   margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;           /* Base size */
+  line-height: 24px;         /* Base line-height */
+  color: var(--color-on-background);
+  background-color: var(--color-background);
+}
+
+/* Link styles using primary color */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+a:hover,
+a:focus {
+  /* Slightly darker/lighter shade could be computed, but here we darken by 10% via opacity overlay */
+  color: var(--color-primary);
+  opacity: 0.85;
+}
+
+/*──────────────────────────────────────────────────────────────────────────
+  Typography tokens (size & weight) 
+  Based on Android Compose tokens:
+    DisplayMd = 24sp, fontWeight=Bold
+    BodyMd = 16sp, fontWeight=Normal
+    MsgMd = 16sp, fontWeight=Normal, lineHeight=24sp
+    TagMd = 12sp, fontWeight=Normal
+──────────────────────────────────────────────────────────────────────────*/
+
+/* CSS custom properties */
+:root {
+  --font-family-base: 'Roboto', sans-serif;
+  --font-size-display-md: 24px;
+  --font-size-body-md: 16px;
+  --font-size-msg-md: 16px;
+  --font-size-tag-md: 12px;
+  --line-height-msg: 24px;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+}
+
+/* Utility classes */
+/* Headline Medium */
+.text-headline-medium {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-display-md);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2; /* adjustable */
+  margin: 0;
+}
+
+/* Body Large (Body) */
+.text-body-large {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-md);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Body Medium / Messages (with explicit line-height) */
+.text-body-medium {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-msg-md);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-msg);
+  margin: 0;
+}
+
+/* Label Small / Tag */
+.text-label-small {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-tag-md);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Example: you can apply these classes to <h1>, <p>, <span>, etc. */
+
+/*──────────────────────────────────────────────────────────────────────────
+  Components / common elements
+──────────────────────────────────────────────────────────────────────────*/
+
+/* Buttons & inputs (you can merge with your existing styles) */
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-md);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-on-surface);
+  background-color: var(--color-surface);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 0.6em 1.2em;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+  transition: border-color 0.25s, background-color 0.25s;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover,
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: var(--color-primary);
+}
+
+button:active,
+input:active,
+select:active,
+textarea:active {
+  border-color: var(--color-primary);
+  /* Slightly darker background when active: using RGBA overlay */
+  background-color: rgba(0,0,0,0.1);
+}
+
+/* Container utility similar to your original */
+.container {
+  margin: 0 auto;
   padding-top: 10vh;
   display: flex;
   flex-direction: column;
@@ -30,87 +191,66 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: 0.75s;
-}
-
-.logo.tauri:hover {
-  filter: drop-shadow(0 0 2em #24c8db);
-}
-
+/* Row utility */
 .row {
   display: flex;
   justify-content: center;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* Logo hover effects: you can keep your existing classes */
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 0.75s;
+}
+.logo.vite:hover {
+  filter: drop-shadow(0 0 2em #747bff);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafb);
+}
+.logo.tauri:hover {
+  filter: drop-shadow(0 0 2em #24c8db);
 }
 
-a:hover {
-  color: #535bf2;
-}
-
-h1 {
+/* Heading default center */
+h1, .text-headline-medium {
   text-align: center;
-}
-
-input,
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  color: #0f0f0f;
-  background-color: #ffffff;
-  transition: border-color 0.25s;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-}
-
-button {
-  cursor: pointer;
-}
-
-button:hover {
-  border-color: #396cd8;
-}
-button:active {
-  border-color: #396cd8;
-  background-color: #e8e8e8;
-}
-
-input,
-button {
-  outline: none;
 }
 
 #greet-input {
   margin-right: 5px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: #f6f6f6;
-    background-color: #2f2f2f;
-  }
+:root {
+  --connection-status-height: 32px;
+  --connection-status-width: 160px;
+  --connection-status-margin-end: 20px;
+  --connection-status-padding-vertical: 8px;
+}
 
-  a:hover {
-    color: #24c8db;
-  }
+.bg-primary {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+.bg-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-on-secondary);
+}
+.bg-tertiary {
+  background-color: var(--color-tertiary);
+  color: var(--color-on-tertiary);
+}
+.text-on-surface {
+  color: var(--color-on-surface);
+}
 
-  input,
-  button {
-    color: #ffffff;
-    background-color: #0f0f0f98;
-  }
-  button:active {
-    background-color: #0f0f0f69;
-  }
+/* Example for a card/surface */
+.card {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 16px;
 }
