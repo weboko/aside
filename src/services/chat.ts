@@ -19,6 +19,9 @@ export const ONLINE_EVENT = "online";
 export class Chat implements IChat {
   private compromised = false;
   private readonly privateKey = crypto.generatePrivateKey();
+  private messagesInterval: ReturnType<typeof setInterval> | undefined = undefined;
+
+  public readonly events = new EventTarget(); 
   public readonly publicKey = crypto.getPublicKey(this.privateKey);
 
   private encoder: IEncoder | undefined = undefined;
@@ -31,17 +34,23 @@ export class Chat implements IChat {
   private ackMessages = new Set();
   private messageQueue: IAsideMessage[] = [];
 
-  public readonly events = new EventTarget(); 
-
   public constructor(private readonly node: Waku, public alicePublicKey?: Uint8Array) {
     this.node.node.nextFilter.subscribe(this.decoder, this.onMessage.bind(this));
 
     if (alicePublicKey) {
       this.createEncoder(alicePublicKey);
+      
+      this.messageQueue.push({
+        type: "pubkey",
+        pubkey: this.publicKey,
+      });
     }
+
+    this.setupMessageSending();
   }
 
   public dispose(): void {
+    this.stopMessageSending();
     this.node.node.nextFilter.unsubscribe(this.decoder);
   }
 
@@ -56,6 +65,25 @@ export class Chat implements IChat {
     if (this.messageQueue.length === 1) {
       await this.sendScheduled();
     }
+  }
+
+  private setupMessageSending(): void {
+    if (this.messagesInterval) {
+      return;
+    }
+
+    this.messagesInterval = setInterval(() => {
+      void this.sendScheduled();
+    }, 500);
+  }
+
+  private stopMessageSending(): void {
+    if (!this.messagesInterval) {
+      return;
+    }
+
+    clearInterval(this.messagesInterval);
+    this.messagesInterval = undefined;
   }
 
   private async onMessage(m: IEncryptedMessage): Promise<void> {
@@ -113,9 +141,7 @@ export class Chat implements IChat {
 
     if (message.type === "ack") {
       this.events.dispatchEvent(
-        new CustomEvent(ACK_EVENT, { detail: {
-          id: message.messageId,
-        }})
+        new CustomEvent(ACK_EVENT, { detail: message.messageId })
       );
     }
   }
@@ -163,6 +189,7 @@ export class Chat implements IChat {
 
     const message = this.messageQueue.shift();
     const payload = toPayload(message!);
+    
     const response = await this.node.node.lightPush.send(this.encoder, { payload }, { autoRetry: false });
 
     // if not success, put message back into the queue
@@ -174,7 +201,7 @@ export class Chat implements IChat {
     // let UI know user message was sent
     if (message?.type === "chat") {
       this.events.dispatchEvent(new CustomEvent(SENT_EVENT, {
-        detail: message.messageId
+        detail: message.messageId,
       }));
     }
   }

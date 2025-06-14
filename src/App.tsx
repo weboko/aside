@@ -5,7 +5,8 @@ import { Header } from "./components/Header";
 import { Chat, ONLINE_EVENT, ERROR_EVENT } from "./services/chat";
 import { useWaku } from "./components/WakuProvider";
 import { StepAsideScreen } from "./components/StepAsideScreen";
-import { ChatScreen } from "./components/ChatScreen";
+import { ChatScreen} from "./components/ChatScreen";
+import { useMessages } from "./services/useMessages";
 
 import "./App.css";
 import styles from "./App.module.css";
@@ -14,6 +15,7 @@ function App() {
   const { stage, node } = useWaku();
   const [chatStage, setChatStage] = useState("offline");
   const [chat, setChat] = useState<Chat>();
+  const { messages, sendMessage } = useMessages(chat);
 
   const onCreate = async () => {
     if (!node) {
@@ -89,7 +91,10 @@ function App() {
       )}
 
       {chat && (
-        <ChatScreen peerOnline={chatStage === "online"} />
+        <ChatScreen
+          messages={messages}
+          sendMessage={sendMessage}
+        />
       )}
     </div>
   );

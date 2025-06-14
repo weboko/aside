@@ -1,15 +1,11 @@
 import React from 'react';
 import styles from './ChatMessage.module.css';
 
-export type MessageStatus = 'queued' | 'sent';
+export type MessageStatus = 'queued' | 'sent' | 'ack';
 
 interface ChatMessageProps {
   text: string;
   status: MessageStatus;
-  /**
-   * True if this message is from the current user (align right);
-   * false for peer messages (align left).
-   */
   isOwn: boolean;
 }
 

@@ -3,25 +3,20 @@ import { ChatMessage, MessageStatus } from '../ChatMessage';
 import { AutoGrowTextarea } from "../AutoGrowTextArea";
 import styles from './ChatScreen.module.css';
 
-interface Message {
-  id: number;
+export interface Message {
+  id: string;
   text: string;
   status: MessageStatus;
   isOwn: boolean;
 }
 
 interface ChatScreenProps {
-  peerOnline: boolean;
+  messages: Message[];
+  sendMessage: (text: string) => void;
 }
 
-export const ChatScreen: React.FC<ChatScreenProps> = ({ peerOnline }) => {
-  // messages array
-  const [messages, setMessages] = useState<Message[]>([]);
-  // input field
+export const ChatScreen: React.FC<ChatScreenProps> = ({ messages, sendMessage }) => {
   const [inputValue, setInputValue] = useState('');
-  // simple incremental id
-  const nextIdRef = useRef(1);
-  // ref to scroll to bottom
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   // Scroll to bottom whenever messages change
@@ -29,30 +24,11 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({ peerOnline }) => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // When peerOnline becomes true, mark queued => sent
-  useEffect(() => {
-    if (peerOnline) {
-      setMessages(prev =>
-        prev.map(msg =>
-          msg.status === 'queued'
-            ? { ...msg, status: 'sent' }
-            : msg
-        )
-      );
-    }
-  }, [peerOnline]);
-
   const handleSend = () => {
     const text = inputValue.trim();
     if (!text) return;
-    const status: MessageStatus = peerOnline ? 'sent' : 'queued';
-    const newMsg: Message = {
-      id: nextIdRef.current++,
-      text,
-      status,
-      isOwn: true,
-    };
-    setMessages(prev => [...prev, newMsg]);
+
+    sendMessage(text);
     setInputValue('');
   };
 
@@ -78,14 +54,6 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({ peerOnline }) => {
       </div>
 
       <div className={styles.inputContainer}>
-        {/* <input
-          type="text"
-          className={styles.input}
-          placeholder=""
-          value={inputValue}
-          onChange={e => setInputValue(e.target.value)}
-          onKeyPress={handleInputKeyPress}
-        /> */}
         <AutoGrowTextarea
           className={styles.input}
           placeholder=""
