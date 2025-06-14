@@ -17,6 +17,7 @@
     "@tauri-apps/plugin-opener": "^2",
     "@waku/sdk": "0.0.32-4997440.0",
     "@waku/message-encryption": "0.0.34-4997440.0",
+    "@waku/utils": "0.0.24-4997440.0",
     "protobufjs": "^7.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

@@ -2,35 +2,52 @@ import React from 'react';
 import styles from './Header.module.css';
 
 interface HeaderProps {
-  onBack: () => void;
-  // You could extend to accept title, right actions, etc.
+  stage: string;
+  chatStage: string;
+  onExit?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onBack }) => {
+export const Header: React.FC<HeaderProps> = ({ stage, chatStage, onExit }) => {
+  const isConnecting = stage === "loading";
+  const isPeerOffline = !isConnecting && chatStage === "offline";
+  const isPeerOnline = !isConnecting && chatStage === "online";
+
+  const statusText = isConnecting
+    ? "Connecting..."
+    : isPeerOffline
+    ? "Peer is offline"
+    : isPeerOnline
+    ? "Peer connected"
+    : undefined;
+
   return (
     <div className={styles.header}>
-      <button
-        onClick={onBack}
-        className={styles.backButton}
-        aria-label="Back"
-      >
-        {/* Simple inline SVG for a left arrow */}
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className={styles.icon}
-        >
-          <path
-            d="M15 18L9 12L15 6"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+      <div className={styles.left}>
+        {statusText && (
+          <div className={styles.statusContainer}>
+            <span
+              className={`
+                ${styles.statusDot} 
+                ${isConnecting ? styles.connectingDot : ""}
+                ${isPeerOffline ? styles.peerOfflineDot : ""}
+                ${isPeerOnline ? styles.peerOnlineDot : ""}
+              `}
+            />
+            <span 
+              className={`
+                ${styles.statusText} 
+                ${isConnecting ? styles.connecting : ""}
+                ${isPeerOffline ? styles.peerOffline : ""}
+                ${isPeerOnline ? styles.peerOnline : ""}
+              `}
+            >
+              {statusText}
+              </span>
+          </div>
+        )}
+      </div>
+      <button onClick={onExit} className={styles.exitButton}>
+        Exit
       </button>
     </div>
   );

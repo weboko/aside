@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #000000; /* black background */
+  color: #FFFFFF;
+  box-sizing: border-box;
+  /* Safe area for notches on iOS: */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
