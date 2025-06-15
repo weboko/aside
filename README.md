@@ -66,7 +66,7 @@ Success is two humans connecting without a trace. That’s it.
 Aside is public: open-source, forkable, modifiable. Sustainability comes through:
 
 - Meant to be free
-- Grants (public goods) no VC, no tokens
+- Grants (public goods), no VC, no tokens
 - Community forks
 - Use by privacy toolkits (bundled into broader offerings)
 
