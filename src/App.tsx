@@ -16,6 +16,7 @@ function App() {
   const [chatStage, setChatStage] = useState("offline");
   const [chat, setChat] = useState<Chat>();
   const { messages, sendMessage, reset } = useMessages(chat);
+  const [notification, setNotification] = useState<string | null>(null);
 
   const onCreate = async () => {
     if (!node) {
@@ -29,8 +30,12 @@ function App() {
 
     try {
       await navigator.clipboard.writeText(hexPublicKey);
+      setNotification("Copied");
+      setTimeout(() => setNotification(null), 3000); // Clear notification after 3 seconds
     } catch (_) {
       console.error("Failed to copy to buffer.");
+      setNotification("Failed to copy");
+      setTimeout(() => setNotification(null), 3000);
     }
   };
 
@@ -95,6 +100,8 @@ function App() {
   return (
     <div className={styles.container}>
       {chat && <Header stage={stage} chatStage={chatStage} onExit={onExit} />}
+
+      {notification && <div className={styles.notification}>{notification}</div>}
 
       {!chat && (
         <StepAsideScreen
