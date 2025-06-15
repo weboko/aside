@@ -25,13 +25,9 @@ Aside removes everything that creates traceability. Built on Waku, it only works
 ## Technology Stack
 
 - Waku (peer-to-peer messaging layer)
-
 - Android and web (Tauri frontend using TypeScript + Rust core)
-
 - No backend, no database
-
 - GitHub
-
 - ECIES
 
 ---
