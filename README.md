@@ -1,7 +1,85 @@
-# Tauri + React + Typescript
+## Aside
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+When you want to discuss something sensitive, you'll be able to safely step aside.
 
-## Recommended IDE Setup
+- Tracks:  Censorship Resistance - Tor, mixnets, Nostr, mesh networks  User Onboarding - Improving privacy tech adoption
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+- Team/Contributors:  Alisher, Sasha
+
+- Repository:  [https://github.com/weboko/aside](https://github.com/weboko/aside)
+
+- Web demo (proof of concept):  [http://weboko.github.io/aside](http://weboko.github.io/aside)
+
+## Description
+
+Aside is a radically minimal, ephemeral, peer-to-peer chat tool. No accounts. No sync. No trace. It lets people connect - then vanish. Nothing saved. Nothing leaked.
+
+Most messengers, even "private" ones, store too much: contacts, metadata, message history. These traces create risks in high-pressure or high-surveillance environments. Think Tails OS or incognito mode - but for short, trusted conversations.
+
+---
+
+## Solution
+
+Aside removes everything that creates traceability. Built on Waku, it only works when both users are online. There’s no history, no retries, and no identity. It is presence without persistence.
+
+---
+
+## Technology Stack
+
+- Waku (peer-to-peer messaging layer)
+
+- Android and web (Tauri frontend using TypeScript + Rust core)
+
+- No backend, no database
+
+- GitHub
+
+- ECIES
+
+---
+
+## Privacy Impact
+
+Success is two humans connecting without a trace. That’s it.
+
+- Zero metadata logging
+- No accounts, contacts, or logs
+- Messages disappear when session ends
+- No trace even on device - "exit" wipes memory instantly
+- Works outside of app stores (sideload APK) - allows verifiability
+
+---
+
+## Real-World Use Cases
+
+- Activist coordination in hostile environments
+- Anonymous whistleblower conversations
+- One-time trusted communication without identity
+- Field journalists verifying sensitive info
+
+---
+
+## Business Logic
+
+Aside is public: open-source, forkable, modifiable. Sustainability comes through:
+
+- Meant to be free
+- Grants (public goods) no VC, no tokens
+- Community forks
+- Use by privacy toolkits (bundled into broader offerings)
+
+No ads, no data sales, no accounts.
+
+---
+
+## What's Next
+
+- Distribute APK via GitHub
+- Strengthen cryptography and transport-layer protection
+- Trusted and secure execution environments
+- Add Waku mixnet or other mixnet built-in
+- Ship hardened release
+- Launch a grassroots privacy campaign
+- Integrate feedback from use in real-world ops
+
+---
