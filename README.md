@@ -3,13 +3,9 @@
 When you want to discuss something sensitive, you'll be able to safely step aside.
 
 - Tracks:  Censorship Resistance - Tor, mixnets, Nostr, mesh networks  User Onboarding - Improving privacy tech adoption
-
 - Team/Contributors:  Alisher, Sasha
-
 - Repository:  [https://github.com/weboko/aside](https://github.com/weboko/aside)
-
 - Web demo (proof of concept):  [http://weboko.github.io/aside](http://weboko.github.io/aside)
-
 - Slides: https://www.figma.com/design/RabMCrsG4P9lzJ4lnp1mM6/Aside?node-id=202-13200
 
 ## Description
