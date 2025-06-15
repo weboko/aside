@@ -59,3 +59,6 @@
 .statusDelivered path {
   margin-right: 2px;
 }
+.statusDelivered svg {
+  color: var(--color-purple, #a259ff);
+}
