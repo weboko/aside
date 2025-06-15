@@ -6,7 +6,7 @@ When you want to discuss something sensitive, you'll be able to safely step asid
 - Team/Contributors:  Alisher, Sasha
 - Repository:  [https://github.com/weboko/aside](https://github.com/weboko/aside)
 - Web demo (proof of concept):  [http://weboko.github.io/aside](http://weboko.github.io/aside)
-- Slides: [link](https://www.figma.com/design/RabMCrsG4P9lzJ4lnp1mM6/Aside?node-id=202-13200)
+- Slides: [link](https://www.figma.com/proto/RabMCrsG4P9lzJ4lnp1mM6/Aside?page-id=202%3A13193&node-id=202-13249&viewport=149%2C202%2C0.19&t=sfau0xoJzMI6ec6f-1&scaling=contain&content-scaling=fixed)
 - Video demo: [link](https://github.com/weboko/aside/blob/51c9ed656d78db6296dedf6b363e85151f582caa/demo.MOV)
 
 ## Description
