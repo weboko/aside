@@ -40,7 +40,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({ messages, sendMessage })
   };
 
   return (
-    <>
+    <div className={styles.chatScreenContainer}> {/* Changed from <> to <div> and added className */}
       <div className={styles.messagesContainer}>
         {messages.map(msg => (
           <ChatMessage
@@ -81,6 +81,6 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({ messages, sendMessage })
           </svg>
         </button>
       </div>
-    </>
+    </div> // Corresponding closing div
   );
 };

@@ -52,3 +52,11 @@
 .sendButton:active {
   opacity: 0.6;
 }
+
+/* Added to manage keyboard visibility */
+.chatScreenContainer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allow this container to grow and fill available space */
+  overflow: hidden; /* Prevent parent scrolling when keyboard is up */
+}
