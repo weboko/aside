@@ -12,7 +12,7 @@
 
 .notification {
   position: fixed;
-  top: 20px;
+  top: 50px;
   left: 50%;
   transform: translateX(-50%);
   background-color: var(--color-gray-dust);
