@@ -10,6 +10,8 @@ When you want to discuss something sensitive, you'll be able to safely step asid
 
 - Web demo (proof of concept):  [http://weboko.github.io/aside](http://weboko.github.io/aside)
 
+- Slides: https://www.figma.com/design/RabMCrsG4P9lzJ4lnp1mM6/Aside?node-id=202-13200
+
 ## Description
 
 Aside is a radically minimal, ephemeral, peer-to-peer chat tool. No accounts. No sync. No trace. It lets people connect - then vanish. Nothing saved. Nothing leaked.
