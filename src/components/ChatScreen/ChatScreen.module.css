@@ -57,6 +57,7 @@
 .chatScreenContainer {
   display: flex;
   flex-direction: column;
-  flex-grow: 1; /* Allow this container to grow and fill available space */
-  overflow: hidden; /* Prevent parent scrolling when keyboard is up */
+  flex-grow: 1; /* Allows the container to take up available space in App.tsx */
+  overflow: hidden; /* Prevents this container from causing scrollbars on App.tsx */
+  min-height: 0; /* Crucial for allowing this container to shrink when keyboard appears */
 }
