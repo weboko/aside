@@ -3,7 +3,7 @@
   "name": "Aside",
   "icons": [
     {
-      "src": "vite.svg",
+      "src": "black-square.svg",
       "type": "image/svg+xml",
       "sizes": "512x512"
     }
